@@ -5,6 +5,8 @@ Tags: inline Bible passages, shortcode, Bible, Book of Common Prayer, Lectionary
 Requires at least: 2.7
 Tested up to: 3.3.2
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Provides the ability to embed Bible Readings into a post or page using shortcode.
 
@@ -14,21 +16,23 @@ Provides the ability to embed Bible readings from the ESV Bible Web Service (htt
 
 Copyright 2011-2012 M.D. Green, SaeSolved:: LLC
 
+== License ==
+
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the
 Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-NOTE THAT THE COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST BE KEPT ON THE PAGE (protected variable $esv_copyright).
-
 == Installation ==
 
-1, Apply for an access code at http://www.esvapi.org/signup.
+1. Apply for an access code at http://www.esvapi.org/signup.
 
 1. Extract the embed-bible-passages folder and place in the wp-content/plugins folder. Enable the plugin.
 
 1. Enter your access code at your site's WordPress Dashboard under Settings -> Embed Bible Passages.
+
+NOTE THAT THE COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST BE KEPT ON THE PAGE (protected variable $esv_copyright).
 
 == Frequently Asked Questions ==
 
@@ -42,7 +46,12 @@ http://resurrectionstl.org/prayer-2/daily-lectionary/.
 
 2. Settings page.
 
-== Changelog ==
+== Upgrade Notice ==
+
 = 0.21 =
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
+== Changelog ==
+
+= 0.21 =
+Adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
