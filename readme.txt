@@ -12,7 +12,9 @@ Provides the ability to embed Bible Readings into a post or page using shortcode
 
 == Description ==
 
-Provides the ability to embed Bible readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading-plan='bcp']. The current version is hard-wired to use only the readings from the Book of Common Prayer Daily Office Lectionary. Future versions are intended to be able to use other sets of readings.
+Provides the ability to embed Bible readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading-plan='bcp']. A tag to embed the date of the passage is also available [embed_passage_date]. See the screenshots for an example of how to use these tags.
+
+The current version is hard-wired to use only the readings from the Book of Common Prayer Daily Office Lectionary. Future versions are intended to be able to use other sets of readings.
 
 Copyright 2011-2012 M.D. Green, SaeSolved:: LLC
 
@@ -42,9 +44,11 @@ http://resurrectionstl.org/prayer-2/daily-lectionary/.
 
 == Screenshots ==
 
-1. Sample Book of Common Prayer Daily Office Lectionary result.
+1. Sample input for page of Book of Common Prayer Daily Office Lectionary.
 
-2. Settings page.
+2. Sample result for page of Book of Common Prayer Daily Office Lectionary.
+
+3. Settings page.
 
 == Upgrade Notice ==
 
