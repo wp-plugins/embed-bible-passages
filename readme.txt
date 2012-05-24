@@ -52,10 +52,16 @@ http://resurrectionstl.org/prayer-2/daily-lectionary/.
 
 == Upgrade Notice ==
 
+= 0.211 =
+This version improves the documentation and corrects the link in the "Powered by" attribution at the bottom of pages.
+
 = 0.21 =
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 0.211 =
+Improves the documentation and corrects the link in the "Powered by" attribution at the bottom of pages.
 
 = 0.21 =
 Adds the ability to optionally show a "Powered by" attribution at the bottom of pages.

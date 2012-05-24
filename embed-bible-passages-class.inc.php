@@ -16,7 +16,7 @@ class EmbedBiblePassages {
 	protected $query_string		= '';
 	protected $plugin_path		= '';
 	protected $post_id			= 0;
-	protected $powered_by		= 'Powered by<br /><a href="http://www.sitewidgets.com/plugins/EmbedBiblePassages.zip" target="_blank" title="Embed Bible Passages">Embed Bible Passages</a><br />plugin for WordPress';
+	protected $powered_by		= 'Powered by<br /><a href="http://wordpress.org/extend/plugins/embed-bible-passages/" target="_blank" title="Embed Bible Passages">Embed Bible Passages</a><br />plugin for WordPress';
 	protected $show_poweredby	= false;
 
 	public function __construct () {
