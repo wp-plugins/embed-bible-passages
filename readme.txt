@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: inline Bible passages, shortcode, Bible, Book of Common Prayer, Lectionary, daily readings, ESV Bible Web Service
 Requires at least: 2.7
 Tested up to: 3.5.1
-Stable tag: 0.7
+Stable tag: 0.71
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 0.71 =
+Correction to committment of revision to repository in order to include new file created for version 0.7
 
 = 0.7 =
 1. IMPORTANT CHANGE: A correction to the shortcode naming system: The shortcode is now [embed_bible_passage reading_plan='bcp']. (reading-plan has been changed to reading_plan. See http://codex.wordpress.org/Shortcode_API.)
