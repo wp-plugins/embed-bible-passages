@@ -77,6 +77,9 @@ http://www.thebiblechallenge.org/
 
 == Upgrade Notice ==
 
+= 0.71 =
+This version corrects committment of revision to repository in order to include new file created for version 0.7.
+
 = 0.7 =
 This version implements:
 
