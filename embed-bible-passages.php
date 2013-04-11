@@ -3,7 +3,7 @@
  * @package Embed Bible Passages
  * @version 0.7
  */
-/*
+
 /*
 Plugin Name: Embed Bible Passages
 Plugin URI:
