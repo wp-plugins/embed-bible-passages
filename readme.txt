@@ -3,7 +3,7 @@ Contributors: drmikegreen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XR9J849YUCJ3A
 Tags: inline Bible passages, shortcode, Bible, Book of Common Prayer, Lectionary, daily readings, ESV Bible Web Service
 Requires at least: 2.7
-Tested up to: 3.4.2
+Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,19 +12,36 @@ Provides the ability to embed Bible Readings into a post or page using shortcode
 
 == Description ==
 
-Provides the ability to embed Bible readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading-plan='bcp']. A tag to embed the date of the passage is also available [embed_passage_date]. See the screenshots for an example of how to use these tags.
+Provides the ability to embed Bible readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp']. See the screenshots for an example of how to use this tag.
 
-The current version is hard-wired to use only the readings from the Book of Common Prayer Daily Office Lectionary. Future versions are intended to be able to use other sets of readings.
+The values of reading_plan can be:
+    bcp						- Book of Common Prayer
+    lsb						- Literary Study Bible
+    esv-study-bible			- ESV Study Bible
+    every-day-in-the-word	- Every Day in the Word
+    one-year-tract			- M'Cheyne One-Year Reading Plan
+    outreach				- Outreach
+    outreach-nt				- Outreach New Testament
+    through-the-bible		- Through the Bible in a Year
+The default reading plan is bcp.
 
-Copyright 2011-2012 M.D. Green, SaeSolved:: LLC
+Note that only the bcp and through-the-bible options have been tested for this plugin. The other options are provided by the ESV Bible Web Service and should also work.
+
+For more information about these reading plans, please see the ESVBible.org Devotions area (http://www.esvbible.org/search/?q=devotions).
+
+The page opens with the plan reading for the current date. An optional date picker calendar is available to enable users to choose readings for other dates.
+
+A tag to embed the current date is also available [embed_passage_date], although this is deprecated in favor of using the date picker calendar.
+
+The readings are provided with a link to an audio file to enable users to listen to the readings. For iPad and iPhone this file is in mp3 format. For all other systems it is in the ESV Bible Web Service API default Flash format.
+
+Copyright 2011-2013 M.D. Green, SaeSolved:: LLC
 
 == License ==
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the
-Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 == Installation ==
 
@@ -34,23 +51,42 @@ or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for mor
 
 1. Enter your access code at your site's WordPress Dashboard under Settings -> Embed Bible Passages.
 
+1. Select whether or not to provide the ability for users to select passages for days other than the current day by clicking on a calendar.
+
+1. Select whether or not to optionally show a "Powered by" attribution at the bottom of pages.
+
+1. Create pages and/or posts containing the shortcode of the form [embed_bible_passage reading_plan='bcp'].
+
 NOTE THAT THE COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST BE KEPT ON THE PAGE (protected variable $esv_copyright).
 
 == Frequently Asked Questions ==
 
-= Where can I see a working example of this plugin? =
+= Where can I see working examples of this plugin? =
 
-http://resurrectionstl.org/prayer-2/daily-lectionary/.
+http://resurrectionstl.org/prayer-2/daily-lectionary/
+
+http://www.thebiblechallenge.org/
 
 == Screenshots ==
 
-1. Sample input for page of Book of Common Prayer Daily Office Lectionary.
+1. Sample input for page of Through the Bible in a Year.
 
-2. Sample result for page of Book of Common Prayer Daily Office Lectionary.
+2. Sample result for page of Through the Bible in a Year.
 
 3. Settings page.
 
 == Upgrade Notice ==
+
+= 0.7 =
+This version implements:
+
+1. IMPORTANT CHANGE: A correction to the shortcode naming system: The shortcode is now [embed_bible_passage reading_plan='bcp']. (reading-plan has been changed to reading_plan. See http://codex.wordpress.org/Shortcode_API.)
+
+1. The ability to use other than the default reading plan.
+
+1. An optional ability for users to select passages for days other than the current day by clicking on a calendar.
+
+1. An mp3 audio file is used for iPhone and iPad, rather than the default Flash audio file.
 
 = 0.211 =
 This version improves the documentation and corrects the link in the "Powered by" attribution at the bottom of pages.
@@ -59,6 +95,15 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 0.7 =
+1. IMPORTANT CHANGE: A correction to the shortcode naming system: The shortcode is now [embed_bible_passage reading_plan='bcp']. (reading-plan has been changed to reading_plan. See http://codex.wordpress.org/Shortcode_API.)
+
+1. The ability to use other than the default reading plan.
+
+1. An optional ability for users to select passages for days other than the current day by clicking on a calendar.
+
+1. An mp3 audio file is used for iPhone and iPad, rather than the default Flash audio file.
 
 = 0.211 =
 Improves the documentation and corrects the link in the "Powered by" attribution at the bottom of pages.

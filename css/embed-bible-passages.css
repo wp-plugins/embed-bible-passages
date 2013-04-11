@@ -1,5 +1,15 @@
-/* Derived from http://www.gnpcb.org/esv/assets/style/text.css */
+#datepicker {
+	float: right;
+	font-size: 0.7em;
+	line-height: 1.0em;
+	margin: 15px 0 5px 10px;
+}
 
+.scriptures-date {
+	font-weight: bold;
+}
+
+/* The following (down to "Mobile") are derived from http://www.gnpcb.org/esv/assets/style/text.css */
 h3 {
 	text-align: left;
 	}
@@ -93,3 +103,18 @@ object.audio {
 	margin: 0 0 0 10px;
 	padding: 0;
 	}
+	
+/* Mobile
+-------------------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+	#datepicker {
+		float: none;
+		margin: 15px auto;
+	}
+	
+	.esv h2 {
+		margin-bottom: -17px;
+	}
+	
+}
