@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: inline Bible passages, shortcode, Bible, Book of Common Prayer, Lectionary, daily readings, ESV Bible Web Service
 Requires at least: 2.7
 Tested up to: 3.5.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,9 @@ http://www.thebiblechallenge.org/
 
 == Upgrade Notice ==
 
+= 1.1 =
+This version changes loading readings from jQuery.load() to the WordPress AJAX system (http://codex.wordpress.org/AJAX_in_Plugins).
+
 = 1.0 =
 This version cleans up version contol issues in order to bring the plugin to version 1.0 status.
 
@@ -101,6 +104,9 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 1.1 =
+Change loading readings from jQuery.load() to the WordPress AJAX system (http://codex.wordpress.org/AJAX_in_Plugins).
 
 = 1.0 =
 Cleanup to bring to version 1.0 status.

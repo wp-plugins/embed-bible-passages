@@ -134,17 +134,20 @@ class EmbedBiblePassages {
 	} 
 
 	public function addDatePicker () {
-		echo '
+		echo "
 			<script>
+				var ajaxurl = '".admin_url('admin-ajax.php')."?action=put_bible_passage&".$this->query_string."&requested_date=';
 				jQuery(function() {
-					jQuery("#datepicker").datepicker({
+					jQuery('#datepicker').datepicker({
 						autoSize:	true,
 						onSelect:	function(dateText) {
-										jQuery("#scriptures").load("'.$this->plugin_url.'embed-bible-passages-get.php?'.$this->query_string.'&requested_date=" + dateText);
+										jQuery.get(ajaxurl + dateText, function(data) {
+											jQuery('#scriptures').html(data);
+										});
 									}
 					})
 				});
-			</script>';
+			</script>";
 	}
 
 	public function embedBiblePassage ($atts) {
@@ -201,6 +204,23 @@ class EmbedBiblePassages {
 			return '<div id="scriptures">'.$rtn_str.'</div>';
 		}
 	}
+	
+	public function putBiblePassage () {
+		$query_string = '';
+		if (isset($_REQUEST['reading-plan']) && $_REQUEST['reading-plan']) {
+			$query_string .= '&reading-plan='.$_REQUEST['reading-plan'];
+		}
+		if (isset($_REQUEST['audio-format']) && $_REQUEST['audio-format']) {
+			$query_string .= '&audio-format='.$_REQUEST['audio-format'];
+		}
+		if (isset($_REQUEST['requested_date']) && $_REQUEST['requested_date']) {
+			list($month, $day, $year) = explode('/', $_REQUEST['requested_date']);
+			$query_string .= "&date=$year-$month-$day";
+		}
+		echo $this->getBiblePassage($query_string);
+		die();
+	}
+
 
 }
 

@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Embed Bible Passages
- * @version 1.0
+ * @version 1.1
  */
 
 /*
 Plugin Name: Embed Bible Passages
 Plugin URI:
 Description: Provides the ability to embed Bible Readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp'].
-Version: 1.0
+Version: 1.1
 Author: M.D. Green
 Author URI: http://saesolved.com/
 
