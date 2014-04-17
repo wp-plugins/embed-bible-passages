@@ -3,7 +3,7 @@ Contributors: drmikegreen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XR9J849YUCJ3A
 Tags: inline Bible passages, shortcode, Bible, Book of Common Prayer, Lectionary, daily readings, ESV Bible Web Service
 Requires at least: 2.7
-Tested up to: 3.9
+Tested up to: 3.5.1
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,7 +35,7 @@ A tag to embed the current date is also available [embed_passage_date], although
 
 The readings are provided with a link to an audio file to enable users to listen to the readings. For iPad and iPhone this file is in mp3 format. For all other systems it is in the ESV Bible Web Service API default Flash format.
 
-Copyright 2011-2014 M.D. Green, SaeSolved:: LLC
+Copyright 2011-2013 M.D. Green, SaeSolved:: LLC
 
 == License ==
 
