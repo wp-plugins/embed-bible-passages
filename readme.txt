@@ -8,11 +8,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Provides the ability to embed Bible Readings into a post or page using shortcode.
+Provides the ability to embed Bible Readings Plans into a post or page using shortcode.
 
 == Description ==
 
-Provides the ability to embed Bible readings from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp']. See the screenshots for an example of how to use this tag.
+Provides the ability to embed Bible readings plans from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp']. See the screenshots for an example of how to use this tag.
 
 The values of reading_plan can be:
     bcp						- Book of Common Prayer
@@ -27,7 +27,7 @@ The default reading plan is bcp.
 
 Note that only the bcp and through-the-bible options have been tested for this plugin. The other options are provided by the ESV Bible Web Service and should also work.
 
-For more information about these reading plans, please see the ESVBible.org Devotions area (http://www.esvbible.org/search/?q=devotions).
+For more information about these reading plans, please see the ESVBible.org Devotions area (http://www.esvbible.org/ and select Plans menu item).
 
 The page opens with the plan reading for the current date. An optional date picker calendar is available to enable users to choose readings for other dates.
 
@@ -35,7 +35,7 @@ A tag to embed the current date is also available [embed_passage_date], although
 
 The readings are provided with a link to an audio file to enable users to listen to the readings. For iPad and iPhone this file is in mp3 format. For all other systems it is in the ESV Bible Web Service API default Flash format.
 
-Copyright 2011-2014 M.D. Green, SaeSolved:: LLC
+Copyright 2011-2015 M.D. Green, SaeSolved:: LLC
 
 == License ==
 
@@ -63,9 +63,15 @@ NOTE THAT THE COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST B
 
 = Where can I see working examples of this plugin? =
 
-http://resurrectionstl.org/prayer-2/daily-lectionary/
+http://church-savior.com/todaysbiblereadings/
 
 http://www.thebiblechallenge.org/
+
+= "Listen" is displayed in very large font. How can this be correcte? =
+
+This phenomenon appears to be caused by some other plugin or theme setting which surrounds the code which displays the word "Listen" to be displayed to be enclosed by div tags which impose the style of the class used in those tags on the contents of that pair of div tags. Changing the style of the class should correct this problem.
+
+In addition, Version 1.2 contains a change to the way the Scriptures are loaded into the page with the intention that other plugin or theme settings will not be able to enclose the code which displays the word "Listen" in div tags.
 
 == Screenshots ==
 
@@ -76,6 +82,9 @@ http://www.thebiblechallenge.org/
 3. Settings page.
 
 == Upgrade Notice ==
+
+= 1.2 =
+This version causes Scriptures to be loaded by jQuery both initially and by Datepicker (if it is used) to help achieve uniformity in formatting. Additionally, Datepicker code is only loaded when Datepicker is used.
 
 = 1.1 =
 This version changes loading readings from jQuery.load() to the WordPress AJAX system (http://codex.wordpress.org/AJAX_in_Plugins).
@@ -104,6 +113,11 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 1.2 =
+1. Scriptures are loaded by jQuery both initially and by Datepicker (if it is used) to help achieve uniformity in formatting.
+
+1. JavaScript for Datepicker only loaded to footer when Datepicker is used.
 
 = 1.1 =
 Change loading readings from jQuery.load() to the WordPress AJAX system (http://codex.wordpress.org/AJAX_in_Plugins).
