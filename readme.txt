@@ -67,7 +67,7 @@ http://church-savior.com/todaysbiblereadings/
 
 http://www.thebiblechallenge.org/
 
-= "Listen" is displayed in very large font. How can this be correcte? =
+= "Listen" is displayed in very large font. How can this be corrected? =
 
 This phenomenon appears to be caused by some other plugin or theme setting which surrounds the code which displays the word "Listen" to be displayed to be enclosed by div tags which impose the style of the class used in those tags on the contents of that pair of div tags. Changing the style of the class should correct this problem.
 
