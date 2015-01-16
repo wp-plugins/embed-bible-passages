@@ -8,6 +8,7 @@ class EmbedBiblePassages {
 	// NOTE THAT THE FOLLOWING COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST BE KEPT ON THE PAGE.
 	protected $esv_copyright	= 'Scripture taken from The Holy Bible, English Standard Version. Copyright &copy;2001 by <a href="http://www.crosswaybibles.org" target="_blank">Crossway Bibles</a>, a publishing ministry of Good News Publishers. Used by permission. All rights reserved. Text provided by the <a href="http://www.gnpcb.org/esv/share/services/" target="_blank">Crossway Bibles Web Service</a>. Reader: David Cochran Heath.';
 	protected $access_key		= 'IP';
+	protected $ajax_url			= '';
 	protected $date_format		= 'l j F Y';
 	protected $document_root	= '';
 	protected $plan_source_link	= 'http://www.esvapi.org/v2/rest/readingPlanQuery?include-headings=false';
@@ -49,6 +50,7 @@ class EmbedBiblePassages {
 			$this->use_calendar = false;
 			update_option('embed_bible_passages_use_calendar', $this->use_calendar);
 		}
+		$this->ajax_url = admin_url('admin-ajax.php').'?action=put_bible_passage&';
 		add_shortcode('embed_bible_passage', array(&$this, 'embedBiblePassage'));
 		add_shortcode('embed_passage_date', array(&$this, 'passageDate'));
 		add_action('admin_init', array(&$this, 'initialize_admin'));
@@ -133,10 +135,17 @@ class EmbedBiblePassages {
 		wp_enqueue_script('jquery-ui-datepicker');
 	} 
 
-	public function addDatePicker () {
+	public function addScriptureLoader () {
 		echo "
 			<script>
-				var ajaxurl = '".admin_url('admin-ajax.php')."?action=put_bible_passage&".$this->query_string."&requested_date=';
+				var ajaxurl = '{$this->ajax_url}{$this->query_string}&requested_date=';
+				
+				// Load Scriptures initially
+				jQuery('#scriptures').load(ajaxurl);";
+		if ($this->use_calendar) {
+			echo "
+				
+				// Datepicker to load Scriptures for dates other than today
 				jQuery(function() {
 					jQuery('#datepicker').datepicker({
 						autoSize:	true,
@@ -146,7 +155,9 @@ class EmbedBiblePassages {
 										});
 									}
 					})
-				});
+				});";
+		}
+		echo "
 			</script>";
 	}
 
@@ -179,8 +190,12 @@ class EmbedBiblePassages {
 		if ($txt) {
 			if ($this->use_calendar) {
 				parse_str($this->query_string);
-				list($year, $month, $day) = explode('-', $date);
-				$scriptures_date = date($this->date_format, mktime(0, 0, 1, $month, $day, $year));
+				if ($date) {
+					list($year, $month, $day) = explode('-', $date);
+					$scriptures_date = date($this->date_format, mktime(0, 0, 1, $month, $day, $year));
+				} else {
+					$scriptures_date = date($this->date_format);
+				}
 				$rtn_str  = '<span class="scriptures-date">'.$scriptures_date.'</span>'.$txt;
 			} else {
 				$rtn_str  = $txt;
@@ -197,11 +212,11 @@ class EmbedBiblePassages {
 			$rtn_str = $error_message;
 		}
 		if ($query_string) {
-			return $rtn_str;
+			return $rtn_str; // with calendar, and loaded with calendar selection
 		} elseif ($this->use_calendar) {
-			return '<div title="'.__('Click on a date to open the readings for that day.').'" id="datepicker"></div><div id="scriptures">'.$rtn_str.'</div>';
+			return '<div title="'.__('Click on a date to open the readings for that day.').'" id="datepicker"></div><div id="scriptures"></div>'; // with calendar, but loaded without calendar selection
 		} else {
-			return '<div id="scriptures">'.$rtn_str.'</div>';
+			return '<div id="scriptures"></div>'; // no calendar
 		}
 	}
 	
