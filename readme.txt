@@ -29,7 +29,7 @@ Note that only the bcp and through-the-bible options have been tested for this p
 
 For more information about these reading plans, please see the ESVBible.org Devotions area (http://www.esvbible.org/ and select Plans menu item).
 
-The page opens with the plan reading for the current date. An optional date picker calendar is available to enable users to choose readings for other dates.
+The page opens with the plan reading for the current date, as set on the client computer. An optional date picker calendar is available to enable users to choose readings for other dates.
 
 A tag to embed the current date is also available [embed_passage_date], although this is deprecated in favor of using the date picker calendar.
 
@@ -73,6 +73,10 @@ This phenomenon appears to be caused by some other plugin or theme setting which
 
 In addition, Version 1.2 contains a change to the way the Scriptures are loaded into the page with the intention that other plugin or theme settings will not be able to enclose the code which displays the word "Listen" in div tags.
 
+= How can the date be made to be that of the local time zone? =
+
+Version 1.3 presents the Bible readings for the day according to the time set on the user's computer.
+
 == Screenshots ==
 
 1. Sample input for page of Through the Bible in a Year.
@@ -82,6 +86,9 @@ In addition, Version 1.2 contains a change to the way the Scriptures are loaded 
 3. Settings page.
 
 == Upgrade Notice ==
+
+= 1.3 =
+This version causes the client's time to be used to set the date of the Bible readings loaded initially.
 
 = 1.2 =
 This version causes Scriptures to be loaded by jQuery both initially and by Datepicker (if it is used) to help achieve uniformity in formatting. Additionally, Datepicker code is only loaded when Datepicker is used.
@@ -113,6 +120,9 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 1.3 =
+The client's time is used to set the date of the Bible readings loaded initially.
 
 = 1.2 =
 1. Scriptures are loaded by jQuery both initially and by Datepicker (if it is used) to help achieve uniformity in formatting.

@@ -141,7 +141,8 @@ class EmbedBiblePassages {
 				var ajaxurl = '{$this->ajax_url}{$this->query_string}&requested_date=';
 				
 				// Load Scriptures initially
-				jQuery('#scriptures').load(ajaxurl);";
+				var ebp_date_obj = new Date();
+				jQuery('#scriptures').load(ajaxurl + encodeURI(ebp_date_obj.toDateString()));";
 		if ($this->use_calendar) {
 			echo "
 				
@@ -174,11 +175,11 @@ class EmbedBiblePassages {
 		return $this->getBiblePassage();
 	}
 
-	public function getBiblePassage ($query_string = '', $error_message = 'Could not retrieve readings.') {
+	protected function getBiblePassage ($query_string = '', $error_message = 'Could not retrieve readings.') {
 		if ($query_string) {
 			$this->query_string  = $query_string;
 		} else {
-			$this->query_string .= '&date='.date('Y-m-d');
+			$this->query_string .= '&date='.date('Y-m-d'); // This is most likely never reached in the current version
 		}
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, "$this->plan_source_link&key=$this->access_key&$this->query_string");
@@ -229,13 +230,16 @@ class EmbedBiblePassages {
 			$query_string .= '&audio-format='.$_REQUEST['audio-format'];
 		}
 		if (isset($_REQUEST['requested_date']) && $_REQUEST['requested_date']) {
-			list($month, $day, $year) = explode('/', $_REQUEST['requested_date']);
-			$query_string .= "&date=$year-$month-$day";
+			if (preg_match("/[a-zA-Z]+/", $_REQUEST['requested_date']) === false) {
+				list($month, $day, $year) = explode('/', $_REQUEST['requested_date']);
+				$query_string .= "&date=$year-$month-$day";
+			} else {
+				$query_string .= "&date=".date("Y-m-d", strtotime($_REQUEST['requested_date']));
+			}
 		}
 		echo $this->getBiblePassage($query_string);
 		die();
 	}
-
 
 }
 
