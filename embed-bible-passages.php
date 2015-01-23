@@ -10,7 +10,7 @@ Plugin URI:
 Description: Provides the ability to embed Bible Reading Plans from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp'].
 Version: 1.3
 Author: M.D. Green
-Author URI: http://saesolved.com/
+Author URI: http://www.saesolved.com/
 
 Copyright 2011-2015 M.D. Green, SaeSolved:: LLC
 
