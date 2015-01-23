@@ -10,7 +10,6 @@ class EmbedBiblePassages {
 	protected $access_key		= 'IP';
 	protected $ajax_url			= '';
 	protected $date_format		= 'l j F Y';
-	protected $document_root	= '';
 	protected $plan_source_link	= 'http://www.esvapi.org/v2/rest/readingPlanQuery?include-headings=false';
 	protected $plugin_url		= '';
 	protected $post_id			= 0;
