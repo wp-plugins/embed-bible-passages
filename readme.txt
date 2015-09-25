@@ -3,7 +3,7 @@ Contributors: drmikegreen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XR9J849YUCJ3A
 Tags: inline Bible passages, Bible reading plans, shortcode, Bible, Book of Common Prayer, Lectionary, daily readings, ESV Bible Web Service
 Requires at least: 2.7
-Tested up to: 4.3
+Tested up to: 4.3.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ Provides the ability to embed Bible Readings Plans into a post or page using sho
 
 == Description ==
 
-Provides the ability to embed Bible readings plans from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp']. See the screenshots for an example of how to use this tag.
+Provides the ability to embed Bible reading plans from the ESV Bible Web Service (http://www.esvapi.org/api#readingPlanQuery) into a post or page using shortcode of the form [embed_bible_passage reading_plan='bcp']. See the screenshots for an example of how to use this tag.
 
 The values of reading_plan can be:
     bcp						- Book of Common Prayer
@@ -51,6 +51,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 1. Enter your access code at your site's WordPress Dashboard under Settings -> Embed Bible Passages.
 
+1. Select which default audio format you wish to use, MP3 or Flash.
+
 1. Select whether or not to provide the ability for users to select passages for days other than the current day by clicking on a calendar.
 
 1. Select whether or not to optionally show a "Powered by" attribution at the bottom of pages.
@@ -66,6 +68,10 @@ NOTE THAT THE COPYRIGHT NOTICE FROM THE SOURCE OF THE TEXT CROSSWAY BIBLE MUST B
 http://church-savior.com/todaysbiblereadings/
 
 http://www.thebiblechallenge.org/
+
+= "Listen" doesn't work or work conveniently on mobile devices. How can this be corrected? =
+
+This has been (at least largely) corrected in version 1.4. The plugin now passes all of the tests at http://www.responsinator.com/.
 
 = "Listen" is displayed in very large font. How can this be corrected? =
 
@@ -86,6 +92,15 @@ Version 1.3 presents the Bible readings for the day according to the time set on
 3. Settings page.
 
 == Upgrade Notice ==
+
+= 1.4 =
+This version:
+
+1. Provides the ability to choose MP3 or Flash for the format of the audio.
+
+1. Makes MP3 the default for Android, as it has been for iPhone and iPad since version 0.7.
+
+1. Uses HTML5 audio tags if MP3 is in use making listening to the audio much more convenient on mobile devices. Provides fallback to embedded audio or a link for browsers which cannot handle HTML5 audio tags.
 
 = 1.3 =
 This version causes the client's time to be used to set the date of the Bible readings loaded initially.
@@ -120,6 +135,17 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 1.4 =
+1. Provided the ability to choose MP3 or Flash for the format of the audio.
+
+1. Made MP3 the default for Android, as it has been for iPhone and iPad since version 0.7, since Adobe no longer supports Android.
+
+1. Added the use of HTML5 audio tags if MP3 is in use and provided fallback to embedded audio or a link for browsers which cannot handle HTML5 audio tags.
+
+1. Reordered the administrative panel.
+
+1. Added "Loading" image to page. This image is replaced by the Bible Readings when they are loaded.
 
 = 1.3 =
 The client's time is used to set the date of the Bible readings loaded initially.

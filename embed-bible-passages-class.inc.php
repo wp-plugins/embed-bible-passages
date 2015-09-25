@@ -9,6 +9,7 @@ class EmbedBiblePassages {
 	protected $esv_copyright	= 'Scripture taken from The Holy Bible, English Standard Version. Copyright &copy;2001 by <a href="http://www.crosswaybibles.org" target="_blank">Crossway Bibles</a>, a publishing ministry of Good News Publishers. Used by permission. All rights reserved. Text provided by the <a href="http://www.gnpcb.org/esv/share/services/" target="_blank">Crossway Bibles Web Service</a>. Reader: David Cochran Heath.';
 	protected $access_key		= 'IP';
 	protected $ajax_url			= '';
+	protected $audio_format		= 'flash'; // Defaults to Flash for backwards compatibity
 	protected $date_format		= 'l j F Y';
 	protected $plan_source_link	= 'http://www.esvapi.org/v2/rest/readingPlanQuery?include-headings=false';
 	protected $plugin_url		= '';
@@ -33,7 +34,12 @@ class EmbedBiblePassages {
 	
 	public function __construct () {
 		$this->document_root	= 'http://'.$_SERVER['SERVER_NAME'];
-		$this->plugin_url		= plugins_url('/embed-bible-passages/');
+		if (function_exists('plugins_url')) {
+			$this->plugin_url = plugins_url('/embed-bible-passages/');
+		} else {
+			// For earlier WordPress versions
+			$this->plugin_url = $this->document_root.'/wp-content/plugins/embed-bible-passages/';
+		}
 		$this->access_key		= get_option('embed_bible_passages_access_key');
 		if (!$this->access_key) {
 			$this->access_key = 'IP';
@@ -43,6 +49,11 @@ class EmbedBiblePassages {
 		if ('' == $this->show_poweredby) {
 			$this->show_poweredby = false;
 			update_option('embed_bible_passages_show_poweredby', $this->show_poweredby);
+		}
+		$this->audio_format		= get_option('embed_bible_passages_audio_format');
+		if ('' == $this->audio_format) {
+			$this->audio_format = 'flash';
+			update_option('embed_bible_passages_audio_format', $this->audio_format);
 		}
 		$this->use_calendar		= get_option('embed_bible_passages_use_calendar');
 		if ('' == $this->use_calendar) {
@@ -61,23 +72,38 @@ class EmbedBiblePassages {
 			$page_for_settings		= 'embed_bible_passages_plugin';
 			$section_for_settings	= 'embed_bible_passages_section';
 			add_settings_section($section_for_settings, 'Embed Bible Passages Settings', array(&$this, 'embed_bible_passages_section_heading'), $page_for_settings);
-			add_settings_field('embed_bible_passages_access_key_id', 'Access key', array(&$this, 'embed_bible_passages_setting_values'), $page_for_settings, $section_for_settings);
+			add_settings_field('embed_bible_passages_access_key_id', 'Access Key', array(&$this, 'embed_bible_passages_acceaa_key_value'), $page_for_settings, $section_for_settings);
+			add_settings_field('embed_bible_passages_audio_format_id', 'Default Audio Format', array(&$this, 'embed_bible_passages_audio_format_value'), $page_for_settings, $section_for_settings);
+			add_settings_field('embed_bible_passages_use_calendar_id', 'Show Date Picker Calendar', array(&$this, 'embed_bible_passages_use_calendar_value'), $page_for_settings, $section_for_settings);
+			add_settings_field('embed_bible_passages_show_powered_by_id', 'Show "Powered by" attribution at bottom of page', array(&$this, 'embed_bible_passages_show_powered_by_value'), $page_for_settings, $section_for_settings);
 			register_setting('embed_bible_passages_settings', 'embed_bible_passages_access_key', 'wp_filter_nohtml_kses');
-			register_setting('embed_bible_passages_settings', 'embed_bible_passages_show_poweredby');
+			register_setting('embed_bible_passages_settings', 'embed_bible_passages_audio_format');
 			register_setting('embed_bible_passages_settings', 'embed_bible_passages_use_calendar');
+			register_setting('embed_bible_passages_settings', 'embed_bible_passages_show_poweredby');
 		}
 	}
 
 	public function embed_bible_passages_section_heading () {
-		_e('Access key (to request an access key fill out the form at <a href="http://www.esvapi.org/signup" target="_blank" title="ESV Bible Web Service - Request an API Key">http://www.esvapi.org/signup</a>):');
+		_e('');
 	}
 
-	public function embed_bible_passages_setting_values () {
+	public function embed_bible_passages_acceaa_key_value () {
 		echo '<input id="embed_bible_passages_access_key_input" name="embed_bible_passages_access_key" size="35" type="text" value="'.$this->access_key.'" />';
-		echo '<div style="margin: 20px 0 10px -220px;"><input name="embed_bible_passages_use_calendar" id="embed_bible_passages_use_calendar_id" type="checkbox" value="1" class="code" '.checked(true, $this->use_calendar, false).' /> Show Date Picker Calendar</div>';
-		echo '<div style="margin: 20px 0 10px -220px;"><input name="embed_bible_passages_show_poweredby" id="embed_bible_passages_show_poweredby_id" type="checkbox" value="1" class="code" '.checked(true, $this->show_poweredby, false).' /> Show "Powered by" attribution at bottom of page</div>';
+		_e('<span style="padding-left: 15px; font-size: 0.9em; text-align: right;">(To request an Access Key fill out the form at <a href="http://www.esvapi.org/signup" target="_blank" title="ESV Bible Web Service - Request an API Key">http://www.esvapi.org/signup</a>)</span>');
 	}
 
+	public function embed_bible_passages_audio_format_value () {
+		echo '<input name="embed_bible_passages_audio_format" id="embed_bible_passages_audio_format_id" type="radio" value="mp3" class="code" '.checked('mp3', $this->audio_format, false).' /> MP3&nbsp;&nbsp;<input name="embed_bible_passages_audio_format" id="embed_bible_passages_audio_format_id" type="radio" value="flash" class="code" '.checked('flash', $this->audio_format, false).' /> Flash<ul style="margin: 5px 0 -20px 50px;"><li>MP3 will be used for Android, iPad, and iPhone in all cases, since Flash will not work there.</li><li>MP3 displays with the WordPress audio player. Flash displays with a "Listen" link which opens a small Flash player.</li></ul>';
+	}
+	
+	public function embed_bible_passages_use_calendar_value () {
+		echo '<input name="embed_bible_passages_use_calendar" id="embed_bible_passages_use_calendar_id" type="checkbox" value="1" class="code" '.checked(true, $this->use_calendar, false).' />';
+	}
+	
+	public function embed_bible_passages_show_powered_by_value () {
+		echo '<input name="embed_bible_passages_show_poweredby" id="embed_bible_passages_show_poweredby_id" type="checkbox" value="1" class="code" '.checked(true, $this->show_poweredby, false).' />';
+	}
+	
 	public function admin_add_page() {
 		add_options_page('Embed Bible Passages Settings', 'Embed Bible Passages', 'manage_options', 'embed_bible_passages_plugin', array(&$this, 'draw_options_page'));
 	}
@@ -139,7 +165,7 @@ class EmbedBiblePassages {
 			<script>
 				var ajaxurl = '{$this->ajax_url}{$this->query_string}&requested_date=';
 				
-				// Load Scriptures initially
+				// Load Scriptures initially with the date set on the client's computer.
 				var ebp_date_obj = new Date();
 				jQuery('#scriptures').load(ajaxurl + encodeURI(ebp_date_obj.toDateString()));";
 		if ($this->use_calendar) {
@@ -167,8 +193,8 @@ class EmbedBiblePassages {
 			$reading_plan = 'bcp'; // default
 		}
 		$this->query_string = "reading-plan=$reading_plan";
-		// Use mp3 instead of Flash if iPad or iPhone
-		if (strpos($_SERVER["HTTP_USER_AGENT"], 'iPhone') !== false || strpos($_SERVER["HTTP_USER_AGENT"], 'iPad') !== false) {
+		// If the audio format setting is mp3 and, also, for Android, iPad, or iPhone use mp3
+		if ('mp3' == $this->audio_format || strpos($_SERVER["HTTP_USER_AGENT"], 'Android') !== false || strpos($_SERVER["HTTP_USER_AGENT"], 'iPad') !== false || strpos($_SERVER["HTTP_USER_AGENT"], 'iPhone') !== false) {
 			$this->query_string .= '&audio-format=mp3';
 		}
 		return $this->getBiblePassage();
@@ -188,6 +214,13 @@ class EmbedBiblePassages {
 		$txt = trim(curl_exec($ch));
 		curl_close($ch);
 		if ($txt) {
+			if ('mp3' == $this->audio_format) {
+				$txt = preg_replace("|(<small class=\"audio\">\(<a href=\")([^\"]+\")(>Listen</a>\)</small>)|m", "<audio title=\"Listen\" controls=\"\" class=\"ebp_audio_player\">
+					<source src=\"$2 type=\"audio/mp3\"></source>
+					<embed src=\"$2 type=\"audio/mp3\"></embed>
+					$1$2 target=\"_blank\"$3
+				</audio>", $txt);
+			}
 			if ($this->use_calendar) {
 				parse_str($this->query_string);
 				if ($date) {
@@ -211,12 +244,13 @@ class EmbedBiblePassages {
 		} else {
 			$rtn_str = $error_message;
 		}
+		$scriptures_div = '<div id="scriptures"><img title="Please wait until screen completes loading." class="ebp_loading_img" src="'.$this->plugin_url.'images/ajax-loading.gif"></div>';
 		if ($query_string) {
-			return $rtn_str; // with calendar, and loaded with calendar selection
+			return $rtn_str; // with calendar, and loaded with calendar selection 
 		} elseif ($this->use_calendar) {
-			return '<div title="'.__('Click on a date to open the readings for that day.').'" id="datepicker"></div><div id="scriptures"></div>'; // with calendar, but loaded without calendar selection
+			return '<div title="'.__('Click on a date to open the readings for that day.').'" id="datepicker"></div>'.$scriptures_div; // with calendar, but loaded without calendar selection
 		} else {
-			return '<div id="scriptures"></div>'; // no calendar
+			return $scriptures_div; // no calendar
 		}
 	}
 	

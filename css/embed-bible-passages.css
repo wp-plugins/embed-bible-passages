@@ -9,6 +9,17 @@
 	font-weight: bold;
 }
 
+.ebp_audio_player {
+	margin-left: 1.2em;
+	width: 30%;
+}
+
+.ebp_loading_img {
+	margin: 10% auto;
+	height: 25%;
+	width: 25%;
+}
+
 /* The following (down to "Mobile") are derived from http://www.gnpcb.org/esv/assets/style/text.css */
 h3 {
 	text-align: left;
@@ -112,9 +123,16 @@ object.audio {
 		float: none;
 		margin: 15px auto;
 	}
-	
+
 	.esv h2 {
 		margin-bottom: -17px;
 	}
 	
+	.ebp_audio_player {
+		margin: 0.3em 0 0.7em 0;
+		width: 95%;
+		float: none;
+	}
+	
 }
+
