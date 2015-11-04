@@ -60,7 +60,7 @@ class EmbedBiblePassages {
 			$this->use_calendar = false;
 			update_option('embed_bible_passages_use_calendar', $this->use_calendar);
 		}
-		$this->ajax_url = admin_url('admin-ajax.php').'?action=put_bible_passage&';
+		$this->ajax_url = admin_url('admin-ajax.php', 'relative').'?action=put_bible_passage&';
 		add_shortcode('embed_bible_passage', array(&$this, 'embedBiblePassage'));
 		add_shortcode('embed_passage_date', array(&$this, 'passageDate'));
 		add_action('admin_init', array(&$this, 'initialize_admin'));
