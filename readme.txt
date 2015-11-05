@@ -93,6 +93,9 @@ Version 1.3 presents the Bible readings for the day according to the time set on
 
 == Upgrade Notice ==
 
+= 1.4.2 =
+This version has an AJAX loading spinner with a transparent background to make it compatible with more designs.
+
 = 1.4.1 =
 This version uses a relative AJAX URL to avoid false cross-domain blocking when more than one URL points to the same site.
 
@@ -138,6 +141,9 @@ This version improves the documentation and corrects the link in the "Powered by
 This version adds the ability to optionally show a "Powered by" attribution at the bottom of pages.
 
 == Changelog ==
+
+= 1.4.2 =
+Uses an AJAX loading spinner with a transparent background to make it compatible with more designs.
 
 = 1.4.1 =
 Uses a relative AJAX URL to avoid false cross-domain blocking when more than one URL points to the same site.
